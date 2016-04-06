@@ -109,10 +109,40 @@ describe Robot do
       end
     end
 
-    # context 'is at location other than edge in that direction' do
-    #   context 'is facing ' do
-    #     it 'change x-coordinate'
-    #   end
-    # end
+    context 'is at location other than edge in that direction' do
+      context 'has y-axis greater than 0 and is facing SOUTH' do
+
+        it 'does not change the state/position' do
+          robot.place(Robot::TABLE_SIZE-1, Robot::TABLE_SIZE-1,'SOUTH')
+          robot.move
+          expect(robot.report).to eql "Output: #{Robot::TABLE_SIZE-1},#{Robot::TABLE_SIZE-2},SOUTH"
+        end
+      end
+      context 'has x-axis greater than 0 and is facing WEST' do
+
+        it 'does not change the state/position' do
+          robot.place(Robot::TABLE_SIZE-1,Robot::TABLE_SIZE-1,'WEST')
+          robot.move
+          expect(robot.report).to eql "Output: #{Robot::TABLE_SIZE-2},#{Robot::TABLE_SIZE-1},WEST"
+        end
+      end
+
+      context 'has y-axis less than TABLE_SIZE and is facing NORTH' do
+
+        it 'does not change the state/position' do
+          robot.place(Robot::TABLE_SIZE,Robot::TABLE_SIZE,'NORTH')
+          robot.move
+          expect(robot.report).to eql "Output: #{Robot::TABLE_SIZE},#{Robot::TABLE_SIZE},NORTH"
+        end
+      end
+      context 'has x-axis less than TABLE_SIZE and is facing EAST' do
+
+        it 'does not change the state/position' do
+          robot.place(Robot::TABLE_SIZE,Robot::TABLE_SIZE,'EAST')
+          robot.move
+          expect(robot.report).to eql "Output: #{Robot::TABLE_SIZE},#{Robot::TABLE_SIZE},EAST"
+        end
+      end
+    end
   end
 end
