@@ -6,7 +6,7 @@ class Robot
   def place(x,y,f)
     @x = x.to_i
     @y = y.to_i
-    @f = f
+    @f = f.upcase
   end
 
   def report
@@ -24,13 +24,13 @@ class Robot
   end
 
   def move
-    if @f == 'NORTH'
+    if @f.upcase == 'NORTH'
       @y += 1 if @y < TABLE_SIZE-1
-    elsif @f == 'SOUTH'
+    elsif @f.upcase == 'SOUTH'
       @y -= 1 if @y > 0
-    elsif @f == 'EAST'
+    elsif @f.upcase == 'EAST'
       @x += 1 if @x < TABLE_SIZE-1
-    elsif @f == 'WEST'
+    elsif @f.upcase == 'WEST'
       @x -= 1 if @x > 0
     end
   end
