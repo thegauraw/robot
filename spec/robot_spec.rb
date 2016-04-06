@@ -19,15 +19,11 @@ describe Robot do
     end
   end
 
-  describe '#turn' do
+  describe '#right' do
     context 'currently facing NORTH' do
       it "faces EAST in RIGHT turn" do
         robot.right
         expect(robot.report).to eql "Output: 0,0,EAST"
-      end
-      it "faces WEST in LEFT turn" do
-        robot.left
-        expect(robot.report).to eql "Output: 0,0,WEST"
       end
     end
     context 'currently facing SOUTH' do
@@ -38,10 +34,6 @@ describe Robot do
         robot.right
         expect(robot.report).to eql "Output: 0,0,WEST"
       end
-      it "faces EAST in LEFT turn" do
-        robot.left
-        expect(robot.report).to eql "Output: 0,0,EAST"
-      end
     end
     context 'currently facing EAST' do
       before do
@@ -50,10 +42,6 @@ describe Robot do
       it "faces SOUTH in RIGHT turn" do
         robot.right
         expect(robot.report).to eql "Output: 0,0,SOUTH"
-      end
-      it "faces NORTH in LEFT turn" do
-        robot.left
-        expect(robot.report).to eql "Output: 0,0,NORTH"
       end
     end
     context 'currently facing WEST' do
@@ -64,12 +52,43 @@ describe Robot do
         robot.right
         expect(robot.report).to eql "Output: 0,0,NORTH"
       end
+    end
+  end
+
+  describe '#left' do
+    context 'currently facing NORTH' do
+      it "faces WEST in LEFT turn" do
+        robot.left
+        expect(robot.report).to eql "Output: 0,0,WEST"
+      end
+    end
+    context 'currently facing SOUTH' do
+      before do
+        robot.place(0,0,'SOUTH')
+      end
+      it "faces EAST in LEFT turn" do
+        robot.left
+        expect(robot.report).to eql "Output: 0,0,EAST"
+      end
+    end
+    context 'currently facing EAST' do
+      before do
+        robot.place(0,0,'EAST')
+      end
+      it "faces NORTH in LEFT turn" do
+        robot.left
+        expect(robot.report).to eql "Output: 0,0,NORTH"
+      end
+    end
+    context 'currently facing WEST' do
+      before do
+        robot.place(0,0,'WEST')
+      end
       it "faces SOUTH in LEFT turn" do
         robot.left
         expect(robot.report).to eql "Output: 0,0,SOUTH"
       end
     end
-
   end
 
   describe '#move' do
