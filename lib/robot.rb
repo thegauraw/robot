@@ -53,4 +53,11 @@ class Robot
     end
   end
 
+  def read_commands(filename)
+    File.open(filename).read.each_line do |f|
+      command = f.chomp
+      self.follow(command)
+    end
+  end
+
 end

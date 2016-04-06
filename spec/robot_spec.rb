@@ -207,4 +207,21 @@ describe Robot do
       end
     end
   end
+
+  describe "#read_commands" do
+    before do
+      File.open "command", "w" do |f|
+        f.puts 'PLACE 0,0,NORTH'
+        f.puts 'MOVE'
+        f.puts 'REPORT'
+      end
+    end
+
+    subject {robot.read_commands('command')}
+
+    it 'read command from the file' do
+      expect(robot).to receive(:follow).exactly(3).times
+      subject
+    end
+  end
 end
