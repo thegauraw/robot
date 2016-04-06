@@ -164,4 +164,47 @@ describe Robot do
       end
     end
   end
+
+  describe '#follow' do
+    context 'with place command' do
+      subject {robot.follow('PLACE 0,0,EAST')}
+      it 'calls place method' do
+        expect(robot).to receive(:place).with('0','0','EAST')
+        subject
+        # expect(robot.report).to eql "Output: 0,0,EAST"
+      end
+    end
+    context 'with right method' do
+      subject {robot.follow('RIGHT')}
+      it 'calls right method' do
+        expect(robot).to receive(:right)
+        subject
+        # expect(robot.report).to eql "Output: 0,0,EAST"
+      end
+    end
+    context 'with left method' do
+      subject {robot.follow('LEFT')}
+      it 'calls left method' do
+        expect(robot).to receive(:left)
+        subject
+        # expect(robot.report).to eql "Output: 0,0,WEST"
+      end
+    end
+    context 'with move method' do
+      subject {robot.follow('MOVE')}
+      it 'calls move method' do
+        expect(robot).to receive(:move)
+        subject
+        # expect(robot.report).to eql "Output: 0,1,NORTH"
+      end
+    end
+    context 'with report method' do
+      subject {robot.follow('REPORT')}
+      it 'calls report method' do
+        expect(robot).to receive(:report)
+        subject
+        # expect(robot.report).to eql "Output: 0,0,NORTH"
+      end
+    end
+  end
 end

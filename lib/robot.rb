@@ -4,8 +4,8 @@ class Robot
   TABLE_SIZE = 5
 
   def place(x,y,f)
-    @x = x
-    @y = y
+    @x = x.to_i
+    @y = y.to_i
     @f = f
   end
 
@@ -34,4 +34,23 @@ class Robot
       @x -= 1 if @x > 0
     end
   end
+
+  def follow(command)
+    action, params = command.chomp.split(' ')
+    if params
+      x,y,f = params.split(',')
+      place(x, y, f)
+    else
+      if action.upcase == 'MOVE'
+        move
+      elsif action.upcase == 'REPORT'
+        report
+      elsif action.upcase == 'LEFT'
+        left
+      elsif action.upcase == 'RIGHT'
+        right
+      end
+    end
+  end
+
 end
